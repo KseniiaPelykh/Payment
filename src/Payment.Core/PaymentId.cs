@@ -1,12 +1,10 @@
 ﻿namespace Payment.Core
 {
-    public class Identifier
+    public class PaymentId
     {
         public string Value { get; }
 
-        public Identifier(string value)
-        {
+        public PaymentId(string value) =>
             Value = value;
-        }
     }
 }
