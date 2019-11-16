@@ -45,3 +45,4 @@ Doubts and problematics:
 - Managing storing payment details failure should be improved. In proposed solution inconsistency can be introduced when bank authorize request meanwhile the payment gateway fails to store it to the system.
 - Card number mask algorithm should be verified according to standards. 
 - CVV and Expiry Date are not stored because it is card detail information and payment gateway could be not authorized to store it.
+- Card number can be encrypted 
