@@ -2,12 +2,12 @@
 
 Open points : 
 
-- pci data security standart
+- PCI data security standart
 - authentication
 - fraud score
 - authorisation and capture 
 - lambda with api gateway or ec2 
-- ps2 
+- PSD2 
 
 
 ## Complex scalable architecture proposal 
