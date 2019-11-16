@@ -1,11 +1,12 @@
 using System;
 using System.Threading.Tasks;
 using Moq;
+using Payment.Core.Utility;
 using Xunit;
 
 namespace Payment.Core.Tests
 {
-    public class PaymentProcessTests
+    public class PaymentProcessingTests
     {
         [Fact]
         public async Task ShouldFailIfBankNotAuthorizeAsync()
@@ -30,7 +31,7 @@ namespace Payment.Core.Tests
                     It.Is<BankRequest>(r => r.Data == bankRequest.Data)))
                 .ReturnsAsync(Result<BankRequestId>.CreateFailure);
 
-            var sut = new ProcessPayment(bank.Object, repo.Object);
+            var sut = new PaymentProcessing(bank.Object, repo.Object);
             var actual = await sut.ProcessAsync(payment);
 
             Assert.False(actual.IsSuccess);
@@ -59,7 +60,7 @@ namespace Payment.Core.Tests
                     It.Is<BankRequest>(r => r.Data == bankRequest.Data)))
                 .ReturnsAsync(Result<BankRequestId>.CreateSuccess(new BankRequestId("Id")));
 
-            var sut = new ProcessPayment(bank.Object, repo.Object);
+            var sut = new PaymentProcessing(bank.Object, repo.Object);
             var actual = await sut.ProcessAsync(payment);
 
             Assert.True(actual.IsSuccess);

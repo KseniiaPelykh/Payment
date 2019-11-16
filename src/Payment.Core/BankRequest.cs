@@ -4,9 +4,6 @@
     {
        public string Data { get; }
 
-        public BankRequest(string data)
-        {
-            Data = data;
-        }
+        public BankRequest(string data) => Data = data;
     }
 }

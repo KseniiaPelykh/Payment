@@ -1,4 +1,4 @@
-﻿namespace Payment.Core
+﻿namespace Payment.Core.Utility
 {
     public class Result<T>
     {

@@ -1,13 +1,14 @@
 ﻿using System.Threading.Tasks;
+using Payment.Core.Utility;
 
 namespace Payment.Core
 {
-    public class ProcessPayment
+    public class PaymentProcessing
     {
         private readonly IBankClient _bankClient;
         private readonly IPaymentRepository _repository;
 
-        public ProcessPayment(IBankClient bankClient, IPaymentRepository repository)
+        public PaymentProcessing(IBankClient bankClient, IPaymentRepository repository)
         {
             _bankClient = bankClient;
             _repository = repository;
