@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Payment.Core
 {
-    public class PaymentData
+    public class ValidPaymentData
     {
         public string CardNumber { get; }
         public DateTimeOffset Expiry { get; }
@@ -12,7 +10,7 @@ namespace Payment.Core
         public string Currency { get; }
         public string Cvv { get; }
 
-        public PaymentData(string cardNumber, DateTimeOffset expiry, decimal amount, string currency, string cvv)
+        public ValidPaymentData(string cardNumber, DateTimeOffset expiry, decimal amount, string currency, string cvv)
         {
             CardNumber = cardNumber;
             Expiry = expiry;

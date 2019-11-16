@@ -4,7 +4,7 @@ namespace Payment.Core
 {
     public interface IBankClient
     {
-        Task<BankRequest> CreateBankRequest(PaymentData data);
-        Task<Result<BankRequestId>> Authorize(BankRequest request);
+        Task<BankRequest> CreateBankRequestAsync(ValidPaymentData data);
+        Task<Result<BankRequestId>> AuthorizeAsync(BankRequest request);
     }
 }
