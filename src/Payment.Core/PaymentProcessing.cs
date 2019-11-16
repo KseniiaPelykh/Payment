@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Payment.Core.Utility;
 
 namespace Payment.Core
@@ -14,19 +15,33 @@ namespace Payment.Core
             _repository = repository;
         }
 
-        public async Task<Result<PaymentId>> ProcessAsync(ValidPaymentData data)
+        public async Task<Result<PaymentId>> ProcessAsync(ValidPaymentRequest request)
         {
-            var authorizationRequest = await _bankClient.CreateBankRequestAsync(data);
+            var authorizationRequest = await _bankClient.CreateBankRequestAsync(request);
             var authorizationResult = await _bankClient.AuthorizeAsync(authorizationRequest);
 
-            if (authorizationResult.IsSuccess)
+            var paymentId = PaymentId.GenerateNew();
+
+            try
             {
-                var paymentId = PaymentId.GenerateNew();
-                await _repository.PutAsync(data, paymentId);
-                return Result<PaymentId>.CreateSuccess(paymentId);
+                var payment = new Payment(
+                    paymentId: paymentId,
+                    cardNumber: Masking.GetMask(request.CardNumber),
+                    amount: request.Amount,
+                    currency: request.Currency,
+                    operationDate: DateTimeOffset.UtcNow,
+                    bankAuthorizationResult: authorizationResult);
+
+                await _repository.PutAsync(payment);
+            }
+            catch (Exception e)
+            {
+                //write to log that it some problem with storing request
             }
 
-            return Result<PaymentId>.CreateFailure();
+            return authorizationResult.IsSuccess
+                ? Result<PaymentId>.CreateSuccess(paymentId)
+                : Result<PaymentId>.CreateFailure(paymentId);
         }
     }
 }

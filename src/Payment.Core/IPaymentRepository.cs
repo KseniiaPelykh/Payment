@@ -4,7 +4,7 @@ namespace Payment.Core
 {
     public interface IPaymentRepository
     {
-        Task PutAsync(ValidPaymentData payment, PaymentId id);
-        Task<ValidPaymentData> GetAsync(PaymentId id);
+        Task PutAsync(IPayment payment);
+        Task<IPayment> GetAsync(PaymentId id);
     }
 }

@@ -16,5 +16,8 @@
 
         public static Result<T> CreateFailure() =>
              new Result<T>(default(T), false);
+
+        public static Result<T> CreateFailure(T value) =>
+            new Result<T>(value, false);
     }
 }

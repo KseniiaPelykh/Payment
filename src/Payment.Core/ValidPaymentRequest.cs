@@ -2,7 +2,7 @@
 
 namespace Payment.Core
 {
-    public class ValidPaymentData
+    public class ValidPaymentRequest
     {
         public string CardNumber { get; }
         public DateTimeOffset Expiry { get; }
@@ -10,7 +10,7 @@ namespace Payment.Core
         public string Currency { get; }
         public string Cvv { get; }
 
-        public ValidPaymentData(string cardNumber, DateTimeOffset expiry, decimal amount, string currency, string cvv)
+        public ValidPaymentRequest(string cardNumber, DateTimeOffset expiry, decimal amount, string currency, string cvv)
         {
             CardNumber = cardNumber;
             Expiry = expiry;

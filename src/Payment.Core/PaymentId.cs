@@ -6,7 +6,7 @@ namespace Payment.Core
     {
         public string Value { get; }
 
-        private PaymentId(string value) =>
+        public PaymentId(string value) =>
             Value = value;
 
         public static PaymentId GenerateNew() =>
