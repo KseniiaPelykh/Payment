@@ -62,7 +62,7 @@ namespace Payment.Core.Tests
             var sut = new ProcessPayment(bank.Object, repo.Object);
             var actual = await sut.ProcessAsync(payment);
 
-            Assert.False(actual.IsSuccess);
+            Assert.True(actual.IsSuccess);
         }
     }
 }
