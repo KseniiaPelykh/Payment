@@ -12,7 +12,7 @@ namespace Payment.DatabaseAdapter
     {
         public async Task PutAsync(IPayment payment)
         {
-             using (var context = new DynamoDBContext(new AmazonDynamoDBClient()))
+            using (var context = new DynamoDBContext(new AmazonDynamoDBClient()))
             {
                 var dbPayment = new Payment
                 {
@@ -39,6 +39,12 @@ namespace Payment.DatabaseAdapter
             using (var context = new DynamoDBContext(new AmazonDynamoDBClient()))
             {
                 var payment = await context.LoadAsync<Payment>(id.Value);
+
+                //find better way managing not found payment
+                if (payment == null)
+                {
+                    return null;
+                }
 
                 var bankAuthorization = payment.Success
                         ? Result<BankAuthorizationId>.CreateSuccess(new BankAuthorizationId(payment.BankAuthorizationId))
