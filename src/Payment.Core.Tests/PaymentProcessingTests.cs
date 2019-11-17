@@ -14,12 +14,12 @@ namespace Payment.Core.Tests
             var bank = new Mock<IBankClient>();
             var repo = new Mock<IPaymentRepository>();
             
-            var request = new ValidPaymentRequest(
+            var request = ValidPaymentRequest.Create(new PaymentRequest(
                 cardNumber:"0000-0000-0000-0000",
                 expiry: new DateTimeOffset(2020, 01, 01, 0, 0,0, TimeSpan.Zero),
                 amount: 100,
                 currency: "USD",
-                cvv: "000");
+                cvv: "000")).Value;
 
             var bankRequest = new BankRequest("data");
 
@@ -43,12 +43,12 @@ namespace Payment.Core.Tests
             var bank = new Mock<IBankClient>();
             var repo = new Mock<IPaymentRepository>();
 
-            var request = new ValidPaymentRequest(
+            var request = ValidPaymentRequest.Create(new PaymentRequest(
                 cardNumber: "0000-0000-0000-0000",
                 expiry: new DateTimeOffset(2020, 01, 01, 0, 0, 0, TimeSpan.Zero),
                 amount: 100,
                 currency: "USD",
-                cvv: "000");
+                cvv: "000")).Value;
 
             var bankRequest = new BankRequest("data");
 

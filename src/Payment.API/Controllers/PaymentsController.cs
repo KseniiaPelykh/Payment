@@ -20,22 +20,21 @@ namespace Payment.API.Controllers
             _paymentRepository = paymentRepository;
         }
 
+        //test non existing id
         [HttpGet("{id}")]
         public async Task<JsonResult> Get(string id) =>
              new JsonResult(await _paymentRepository.GetAsync(new PaymentId(id)));
 
-        //add validation
         [HttpPost]
-        public async Task<JsonResult> Post(ValidPaymentRequest request)
+        public async Task<JsonResult> Post(PaymentRequest request)
         {
-            var result = await _paymentProcessing.ProcessAsync(request);
+            var validationResult = ValidPaymentRequest.Create(request);
 
-            //GetPaymentID method?
-            //mapping shouldHappen here? 
-            var paymentId = result.Value;
-            return new JsonResult(new PaymentResult(
-                paymentId.Value,
-                result.IsSuccess ? Status.Success : Status.Failure));
+            var response = !validationResult.IsSuccess 
+                ? new PaymentResponse(validationResult.Errors)
+                : new PaymentResponse(await _paymentProcessing.ProcessAsync(validationResult.Value));
+
+            return new JsonResult(response);
         }
     }
 }

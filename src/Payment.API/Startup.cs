@@ -24,6 +24,7 @@ namespace Payment.API
                 .AddJsonOptions(o =>
                     o.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter()))
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
             services.AddScoped<IPaymentProcessing, PaymentProcessing>();
             services.AddScoped<IBankClient, BankClient>();
             services.AddScoped<IPaymentRepository, PaymentRepository>();
