@@ -4,7 +4,6 @@ using System.Linq;
 
 namespace Payment.Core
 {
-    //write unit tests
     public static class Validator
     {
         private static readonly IList<(Rule rule, Predicate<PaymentRequest> isInvalid)> Rules =
