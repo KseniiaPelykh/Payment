@@ -10,7 +10,7 @@ namespace Payment.API.Models
         public decimal Amount { get; }
         public string Currency { get; }
         public DateTimeOffset OperationDate { get; }
-        public bool Successful { get; }
+        public Status Status { get; }
 
         public PaymentDetailsResponse(IPayment payment)
         {
@@ -19,7 +19,7 @@ namespace Payment.API.Models
             Amount = payment.Amount;
             Currency = payment.Currency;
             OperationDate = payment.OperationDate;
-            Successful = payment.BankAuthorizationResult.IsSuccess;
+            Status = payment.BankAuthorizationResult.IsSuccess ? Status.Success : Status.Failure;
         }
     }
 }
