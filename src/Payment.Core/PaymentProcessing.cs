@@ -4,7 +4,7 @@ using Payment.Core.Utility;
 
 namespace Payment.Core
 {
-    public class PaymentProcessing
+    public class PaymentProcessing : IPaymentProcessing
     {
         private readonly IBankClient _bankClient;
         private readonly IPaymentRepository _repository;
