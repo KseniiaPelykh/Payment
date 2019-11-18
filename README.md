@@ -44,3 +44,11 @@ This properties are stored:
 - Card number can be encrypted and mask algorithm should be verified according to standards. 
 - CVV and Expiry Date are not stored because it is card detail information and payment gateway could be not authorized to store it.
 - Integration test for DynamoDB
+
+**Other Imrovementes:**
+1. Authentication should be introduced between entities
+2. Card details should be encrypted
+3. Logging
+4. Integration testing
+5. Performance testing
+6. Currency should have predefined values
