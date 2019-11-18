@@ -45,7 +45,7 @@ This properties are stored:
 - CVV and Expiry Date are not stored because it is card detail information and payment gateway could be not authorized to store it.
 - Integration test for DynamoDB
 
-## Other Improvements:
+## Other Improvements
 1. Authentication should be introduced between entities
 2. Card details should be encrypted
 3. Logging
