@@ -40,7 +40,6 @@ namespace Payment.DatabaseAdapter
             {
                 var payment = await context.LoadAsync<Payment>(id.Value);
 
-                //find better way managing not found payment
                 if (payment == null)
                 {
                     return null;
